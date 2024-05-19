@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "464215167611",
+    "project_id": "fire-riverpod-project",
+    "storage_bucket": "fire-riverpod-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464215167611:android:5c07c98d2a32201de948de",
+        "android_client_info": {
+          "package_name": "com.example.fire_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtq-_Ju5cn3wkxIF4mfWk85z4uOaomk-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
