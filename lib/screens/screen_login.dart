@@ -1,11 +1,14 @@
+import 'package:fire_app/state/login/password.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
-class ScreenLogin extends StatelessWidget {
+class ScreenLogin extends ConsumerWidget {
   const ScreenLogin({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isPasswordVisible = ref.watch(passWordProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -30,11 +33,19 @@ class ScreenLogin extends StatelessWidget {
                 onSubmitted: (value) {},
               ),
               const SizedBox(height: 30),
+              //password
               TextField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Password',
-                  focusedBorder: OutlineInputBorder(),
-                  suffixIcon: Icon(Icons.security_outlined),
+                  focusedBorder: const OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      ref.read(passWordProvider.notifier).changeState();
+                    },
+                    icon: Icon(isPasswordVisible
+                        ? Icons.security
+                        : Icons.remove_red_eye_outlined),
+                  ),
                 ),
                 obscureText: true,
                 onSubmitted: (value) {},
