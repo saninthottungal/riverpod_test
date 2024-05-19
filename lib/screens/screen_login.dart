@@ -4,7 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
 class ScreenLogin extends ConsumerWidget {
-  const ScreenLogin({super.key});
+  ScreenLogin({super.key});
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,16 +28,18 @@ class ScreenLogin extends ConsumerWidget {
                 width: double.infinity,
               ),
               const SizedBox(height: 50),
+              //email
               TextField(
+                controller: emailController,
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   focusedBorder: OutlineInputBorder(),
                 ),
-                onSubmitted: (value) {},
               ),
               const SizedBox(height: 30),
               //password
               TextField(
+                controller: passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   focusedBorder: const OutlineInputBorder(),
@@ -47,12 +52,14 @@ class ScreenLogin extends ConsumerWidget {
                         : Icons.remove_red_eye_outlined),
                   ),
                 ),
-                obscureText: true,
-                onSubmitted: (value) {},
+                obscureText: !isPasswordVisible,
               ),
               const SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  final email = emailController.text;
+                  final password = passwordController.text;
+                },
                 child: const Text('Login'),
               ),
             ],
