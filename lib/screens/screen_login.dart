@@ -1,4 +1,6 @@
+import 'package:fire_app/state/login/login.dart';
 import 'package:fire_app/state/login/password.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -12,6 +14,7 @@ class ScreenLogin extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isPasswordVisible = ref.watch(passWordProvider);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -55,12 +58,24 @@ class ScreenLogin extends ConsumerWidget {
                 obscureText: !isPasswordVisible,
               ),
               const SizedBox(height: 30),
+              //login button
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   final email = emailController.text;
                   final password = passwordController.text;
+                  await ref.read(authProvider.notifier).signIn(email, password);
                 },
                 child: const Text('Login'),
+              ),
+              const SizedBox(height: 10),
+              //sign Up button
+              CupertinoButton(
+                onPressed: () async {
+                  final email = emailController.text;
+                  final password = passwordController.text;
+                  await ref.read(authProvider.notifier).signUp(email, password);
+                },
+                child: const Text('SignUp'),
               ),
             ],
           ),
